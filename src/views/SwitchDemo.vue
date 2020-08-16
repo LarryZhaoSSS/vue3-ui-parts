@@ -1,7 +1,7 @@
 <template>
   <div>
     <p>Switch 的文档</p>
-    <Switch :value="y" @input="y=$event" />
+    <Switch v-model:value="y" />
   </div>
 </template>
 
