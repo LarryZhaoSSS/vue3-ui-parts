@@ -1,11 +1,13 @@
 <template>
-  <button :class="{checked:value}" @click="toggle">
-    <span></span>
-  </button>
+<button class="vparts-switch" :class="{ checked: value }" @click="toggle">
+  <span></span>
+</button>
 </template>
 
 <script lang="ts">
-import { ref } from "vue";
+import {
+  ref
+} from "vue";
 export default {
   props: {
     value: Boolean,
@@ -14,7 +16,9 @@ export default {
     const toggle = () => {
       context.emit("update:value", !props.value);
     };
-    return { toggle };
+    return {
+      toggle,
+    };
   },
 };
 </script>
@@ -22,14 +26,16 @@ export default {
 <style lang="scss" scoped>
 $h: 22px;
 $h2: $h - 4px;
-button {
+
+.vparts-switch {
   height: $h;
   width: $h * 2;
   border: none;
   background: grey;
   border-radius: $h / 2;
   position: relative;
-  > span {
+
+  >span {
     position: absolute;
     top: 2px;
     left: 2px;
@@ -39,22 +45,27 @@ button {
     border-radius: $h2 / 2;
     transition: left 0.25s;
   }
+
   &.checked {
     background: #1890ff;
   }
-  &.checked > span {
+
+  &.checked>span {
     left: calc(100% - #{$h2} - 2px);
   }
+
   &:focus {
     outline: none;
   }
+
   &:active {
-    > span {
+    >span {
       width: $h2 + 4px;
     }
   }
+
   &.checked:active {
-    > span {
+    >span {
       width: $h2 + 4px;
       margin-left: -4px;
     }
