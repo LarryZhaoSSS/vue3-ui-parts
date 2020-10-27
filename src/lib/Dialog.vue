@@ -1,6 +1,6 @@
 <template>
 <template v-if="visible">
-  <div class="gulu-dialog-overlay"></div>
+  <div class="gulu-dialog-overlay" @click="onClickOverlay"></div>
   <div class="gulu-dialog-wrapper">
     <div class="gulu-dialog">
       <header>标题</header>
@@ -9,11 +9,29 @@
         <p>line-2</p>
       </main>
       <footer>
-        <Button>Cancel</Button>
-        <Button>Ok</Button>
+        <Button @click="cancel">Cancel</Button>
+        <Button level="main" @click="ok">Ok</Button>
       </footer>
     </div>
   </div>
+</template>
+</template>
+</template>
+</template>
+</template>
+</template>
+</template>
+</template>
+</template>
+</template>
+</template>
+</template>
+</template>
+</template>
+</template>
+</template>
+</template>
+</template>
 </template>
 </template>
 </template>
@@ -28,12 +46,44 @@ export default {
       type: Boolean,
       default: false,
     },
+    closeOnClickOverlay: {
+      type: Boolean,
+      default: true,
+    },
+    ok: {
+      type: Function,
+    },
+    cancel: {
+      type: Function,
+    },
   },
   components: {
     Button,
   },
-  setup() {
-    return {};
+  setup(props, context) {
+    const close = () => {
+      context.emit("update:visible", false);
+    };
+    const onClickOverlay = () => {
+      if (props.closeOnClickOverlay) {
+        close();
+      }
+    };
+    const ok = () => {
+      if (props.ok?.() !== false) {
+        close();
+      }
+    };
+    const cancel = () => {
+      context.emit("cancel");
+      close();
+    };
+    return {
+      close,
+      onClickOverlay,
+      ok,
+      cancel,
+    };
   },
 };
 </script>
