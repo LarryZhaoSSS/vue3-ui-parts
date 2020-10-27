@@ -1,12 +1,13 @@
 <template>
-<template v-if="visible">
+<div v-if="visible">
   <div class="gulu-dialog-overlay" @click="onClickOverlay"></div>
   <div class="gulu-dialog-wrapper">
     <div class="gulu-dialog">
-      <header>标题</header>
+      <header>
+        <slot name="header" />
+      </header>
       <main>
-        <p>line-1</p>
-        <p>line-2</p>
+        <slot name="content" />
       </main>
       <footer>
         <Button @click="cancel">Cancel</Button>
@@ -14,34 +15,17 @@
       </footer>
     </div>
   </div>
-</template>
-</template>
-</template>
-</template>
-</template>
-</template>
-</template>
-</template>
-</template>
-</template>
-</template>
-</template>
-</template>
-</template>
-</template>
-</template>
-</template>
-</template>
-</template>
-</template>
-</template>
-</template>
+</div>
 </template>
 
 <script lang="ts">
 import Button from "./Button.vue";
 export default {
   props: {
+    title: {
+      type: String,
+      default: "提示",
+    },
     visible: {
       type: Boolean,
       default: false,

@@ -3,7 +3,10 @@
   <div>dialog example</div>
   <h1>example-1</h1>
   <Button @click="toggle">toggle</Button>
-  <Dialog v-model:visible="x" :closeOnClickOverlay="false" :ok="f1" :cancel="f1"></Dialog>
+  <Dialog v-model:visible="x" :closeOnClickOverlay="false" :ok="f1" :cancel="f1">
+    <template v-slot:content><strong>粗的</strong></template>
+    <template v-slot:header><strong>strong header</strong></template>
+  </Dialog>
 </div>
 </template>
 
