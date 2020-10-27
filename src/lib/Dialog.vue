@@ -5,7 +5,7 @@
     <div class="gulu-dialog-wrapper">
       <div class="gulu-dialog">
         <header>
-          <slot name="header" />
+          <slot name="title" />
         </header>
         <main>
           <slot name="content" />
@@ -24,10 +24,6 @@
 import Button from "./Button.vue";
 export default {
   props: {
-    title: {
-      type: String,
-      default: "提示",
-    },
     visible: {
       type: Boolean,
       default: false,
