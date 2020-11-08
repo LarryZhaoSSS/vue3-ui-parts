@@ -13,6 +13,7 @@
 <script lang="ts">
 import {
   computed,
+  onMounted,
   ref,
   watchEffect
 } from 'vue'
@@ -28,28 +29,25 @@ export default {
     const selectedItem = ref < HTMLDivElement > (null)
     const indicator = ref < HTMLDivElement > (null)
     const container = ref < HTMLDivElement > (null)
+    onMounted(() => {
+      watchEffect(() => {
 
-    watchEffect(() => {
-      if (!selectedItem.value) {
-        return
-      }
-      if (!container.value) {
-        return
-      }
-      const {
-        width
-      } = selectedItem.value.getBoundingClientRect()
-      indicator.value.style.width = width + 'px'
-      const {
-        left: left1
-      } = container.value.getBoundingClientRect()
-      const {
-        left: left2
-      } = selectedItem.value.getBoundingClientRect()
-      const left = left2 - left1
-      console.log(left)
-      indicator.value.style.left = left + 'px'
+        const {
+          width
+        } = selectedItem.value.getBoundingClientRect()
+        indicator.value.style.width = width + 'px'
+        const {
+          left: left1
+        } = container.value.getBoundingClientRect()
+        const {
+          left: left2
+        } = selectedItem.value.getBoundingClientRect()
+        const left = left2 - left1
+        console.log(left)
+        indicator.value.style.left = left + 'px'
+      })
     })
+
     defaults.forEach(tag => {
       if (tag.type !== Tab) {
         throw new Error('不是Tab标签组件')
