@@ -1,45 +1,54 @@
 <template>
-<div class="layout">
-  <Topnav toggleMenuButtonVisible class="nav" />
-  <div class="content">
-    <aside v-if="menuVisible">
-      <h2>组件列表</h2>
-      <ol>
-        <li>
-          <router-link to="/doc/switch">Switch 组件</router-link>
-        </li>
-        <li>
-          <router-link to="/doc/button">Button 组件</router-link>
-        </li>
-        <li>
-          <router-link to="/doc/dialog">Dialog 组件</router-link>
-        </li>
-        <li>
-          <router-link to="/doc/tabs">Tabs 组件</router-link>
-        </li>
-      </ol>
-    </aside>
-    <main>
-      <router-view />
-    </main>
+  <div class="layout">
+    <Topnav toggleMenuButtonVisible class="nav" />
+    <div class="content">
+      <aside v-if="menuVisible">
+        <h2>文档</h2>
+        <ol>
+          <li>
+            <router-link to="/doc/intro">介绍</router-link>
+          </li>
+          <li>
+            <router-link to="/doc/install">安装</router-link>
+          </li>
+          <li>
+            <router-link to="/doc/get_started">开始使用</router-link>
+          </li>
+        </ol>
+        <h2>组件列表</h2>
+        <ol>
+          <li>
+            <router-link to="/doc/switch">Switch 组件</router-link>
+          </li>
+          <li>
+            <router-link to="/doc/button">Button 组件</router-link>
+          </li>
+          <li>
+            <router-link to="/doc/dialog">Dialog 组件</router-link>
+          </li>
+          <li>
+            <router-link to="/doc/tabs">Tabs 组件</router-link>
+          </li>
+        </ol>
+      </aside>
+      <main>
+        <router-view />
+      </main>
+    </div>
   </div>
-</div>
 </template>
 
 <script lang="ts">
-import Topnav from "../components/Topnav.vue";
-import {
-  inject,
-  Ref
-} from "vue";
+import Topnav from '../components/Topnav.vue';
+import { inject, Ref } from 'vue';
 export default {
   components: {
-    Topnav
+    Topnav,
   },
   setup() {
-    const menuVisible = inject < Ref < boolean >> ("menuVisible"); // get
+    const menuVisible = inject<Ref<boolean>>('menuVisible'); // get
     return {
-      menuVisible
+      menuVisible,
     };
   },
 };
@@ -51,11 +60,11 @@ export default {
   flex-direction: column;
   height: 100vh;
 
-  >.nav {
+  > .nav {
     flex-shrink: 0;
   }
 
-  >.content {
+  > .content {
     flex-grow: 1;
     padding-top: 60px;
     padding-left: 156px;
@@ -69,11 +78,11 @@ export default {
 .content {
   display: flex;
 
-  >aside {
+  > aside {
     flex-shrink: 0;
   }
 
-  >main {
+  > main {
     flex-grow: 1;
     padding: 16px;
     background: white;
@@ -90,12 +99,12 @@ aside {
   padding-top: 70px;
   height: 100%;
 
-  >h2 {
+  > h2 {
     margin-bottom: 4px;
   }
 
-  >ol {
-    >li {
+  > ol {
+    > li {
       padding: 4px 0;
     }
   }
