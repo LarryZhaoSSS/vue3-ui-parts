@@ -1,69 +1,79 @@
 <template>
-<div class="gulu-tabs">
-  <div class="gulu-tabs-nav" ref="container">
-    <div class="gulu-tabs-nav-item" @click="select(t)" :class="{selected:t===selected}" v-for="(t,index) in titles" :key="index" :ref="el => { if (t===selected) selectedItem = el }">{{ t }}</div>
-    <div class="gulu-tabs-nav-indicator" ref="indicator"></div>
+  <div class="vparts-tabs">
+    <div class="vparts-tabs-nav" ref="container">
+      <div
+        class="vparts-tabs-nav-item"
+        @click="select(t)"
+        :class="{ selected: t === selected }"
+        v-for="(t, index) in titles"
+        :key="index"
+        :ref="
+          (el) => {
+            if (t === selected) selectedItem = el;
+          }
+        "
+      >
+        {{ t }}
+      </div>
+      <div class="vparts-tabs-nav-indicator" ref="indicator"></div>
+    </div>
+    <div class="vparts-tabs-content">
+      <component
+        class="vparts-tabs-content-item"
+        :class="{ selected: c.props.title === selected }"
+        v-for="(c, index) in defaults"
+        :is="c"
+        :key="index"
+      />
+    </div>
   </div>
-  <div class="gulu-tabs-content">
-    <component class="gulu-tabs-content-item" :class="{selected:c.props.title === selected}" v-for="(c,index) in defaults" :is="c" :key="index" />
-  </div>
-</div>
 </template>
 
 <script lang="ts">
-import {
-  computed,
-  onMounted,
-  ref,
-  watchEffect
-} from 'vue'
-import Tab from './Tab.vue'
+import { computed, onMounted, ref, watchEffect } from 'vue';
+import Tab from './Tab.vue';
 export default {
   props: {
     selected: {
-      type: String
-    }
+      type: String,
+    },
   },
   setup(props, context) {
-    const defaults = context.slots.default()
-    const selectedItem = ref < HTMLDivElement > (null)
-    const indicator = ref < HTMLDivElement > (null)
-    const container = ref < HTMLDivElement > (null)
+    const defaults = context.slots.default();
+    const selectedItem = ref<HTMLDivElement>(null);
+    const indicator = ref<HTMLDivElement>(null);
+    const container = ref<HTMLDivElement>(null);
     onMounted(() => {
-      watchEffect(() => {
+      watchEffect(
+        () => {
+          const { width } = selectedItem.value.getBoundingClientRect();
+          indicator.value.style.width = width + 'px';
+          const { left: left1 } = container.value.getBoundingClientRect();
+          const { left: left2 } = selectedItem.value.getBoundingClientRect();
+          const left = left2 - left1;
+          console.log(left);
+          indicator.value.style.left = left + 'px';
+        },
+        { flush: 'post' }
+      );
+    });
 
-        const {
-          width
-        } = selectedItem.value.getBoundingClientRect()
-        indicator.value.style.width = width + 'px'
-        const {
-          left: left1
-        } = container.value.getBoundingClientRect()
-        const {
-          left: left2
-        } = selectedItem.value.getBoundingClientRect()
-        const left = left2 - left1
-        console.log(left)
-        indicator.value.style.left = left + 'px'
-      })
-    })
-
-    defaults.forEach(tag => {
+    defaults.forEach((tag) => {
       if (tag.type !== Tab) {
-        throw new Error('不是Tab标签组件')
+        throw new Error('不是Tab标签组件');
       }
-    })
+    });
     const current = computed(() => {
-      return defaults.filter(tag => {
-        return tag.props.title === props.selected
-      })[0]
-    })
-    const titles = defaults.map(tag => {
-      return tag.props.title
-    })
+      return defaults.filter((tag) => {
+        return tag.props.title === props.selected;
+      })[0];
+    });
+    const titles = defaults.map((tag) => {
+      return tag.props.title;
+    });
     const select = (title: string) => {
-      context.emit('update:selected', title)
-    }
+      context.emit('update:selected', title);
+    };
     return {
       defaults,
       titles,
@@ -71,10 +81,10 @@ export default {
       select,
       indicator,
       container,
-      selectedItem
-    }
-  }
-}
+      selectedItem,
+    };
+  },
+};
 </script>
 
 <style lang="scss">
@@ -82,7 +92,7 @@ $blue: #40a9ff;
 $color: #333;
 $border-color: #d9d9d9;
 
-.gulu-tabs {
+.vparts-tabs {
   &-nav {
     display: flex;
     color: $color;
