@@ -1,17 +1,19 @@
 import { createWebHashHistory, createRouter } from 'vue-router';
+import { h } from 'vue';
+
 import Home from './views/Home.vue';
+
 import Doc from './views/Doc.vue';
 import SwitchDemo from './views/SwitchDemo.vue';
 import ButtonDemo from './views/ButtonDemo.vue';
 import DialogDemo from './views/DialogDemo.vue';
 import TabsDemo from './views/TabsDemo.vue';
-import MarkDown from './components/MarkDown.vue';
+import Markdown from './components/MarkDown.vue';
 import intro from './markdown/intro.md';
 import getStarted from './markdown/get-started.md';
 import install from './markdown/install.md';
-import { h } from 'vue';
-const md = (str) => h(MarkDown, { content: str, key: str });
-
+//@ts-ignore
+const md = (string) => h(Markdown, { content: string, key: string });
 const history = createWebHashHistory();
 const router = createRouter({
   history,
