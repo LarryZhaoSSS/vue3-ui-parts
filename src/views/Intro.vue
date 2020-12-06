@@ -1,21 +1,12 @@
 <template>
-  <div>
-    Intro
-  </div>
+  <MarkDown path="../markdown/intro.md" />
 </template>
 
-<script lang="ts">
-import { defineComponent } from 'vue'
-
+<script>
+import { defineComponent } from 'vue';
 export default defineComponent({
-  setup () {
-    
-
-    return {}
-  }
-})
+  setup() {},
+});
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>
