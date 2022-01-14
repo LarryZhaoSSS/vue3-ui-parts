@@ -968,9 +968,9 @@ fill-range@^7.0.1:
     to-regex-range "^5.0.1"
 
 follow-redirects@^1.0.0:
-  version "1.12.1"
-  resolved "https://registry.npm.taobao.org/follow-redirects/download/follow-redirects-1.12.1.tgz?cache=0&sync_timestamp=1592518530318&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Ffollow-redirects%2Fdownload%2Ffollow-redirects-1.12.1.tgz#de54a6205311b93d60398ebc01cf7015682312b6"
-  integrity sha1-3lSmIFMRuT1gOY68Ac9wFWgjErY=
+  version "1.14.7"
+  resolved "https://registry.yarnpkg.com/follow-redirects/-/follow-redirects-1.14.7.tgz#2004c02eb9436eee9a21446a6477debf17e81685"
+  integrity sha512-+hbxoLbFMbRKDwohX8GkTataGqO6Jb7jGwpAlwgy2bIz25XtRm7KEzJM76R1WiNT5SwZkX4Y75SwBolkpmE7iQ==
 
 fresh@~0.5.2:
   version "0.5.2"
@@ -1582,6 +1582,7 @@ node-forge@0.9.0:
   integrity sha1-1iQFDtu0SHStyhK7mlLsY8t4JXk=
 
 node-sass@4, "node-sass@npm:sass@1.26.11", sass@1.26.11:
+  name node-sass
   version "1.26.11"
   resolved "https://registry.npm.taobao.org/sass/download/sass-1.26.11.tgz#0f22cc4ab2ba27dad1d4ca30837beb350b709847"
   integrity sha1-DyLMSrK6J9rR1Mowg3vrNQtwmEc=
